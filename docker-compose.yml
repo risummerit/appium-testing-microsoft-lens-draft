@@ -42,6 +42,8 @@ services:
       - DEVICE=test_avd
     volumes:
       - /dev/kvm:/dev/kvm
+    env_file:
+      - .env
 
   test-runner:
     platform: linux/amd64
@@ -54,3 +56,5 @@ services:
       - APK_PATH=/app/MicrosoftLens/MicrosoftLens.apk
     volumes:
       - .:/app
+    env_file:
+      - .env

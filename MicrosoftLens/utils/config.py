@@ -5,7 +5,7 @@ load_dotenv()
 
 DEVICE_NAME = os.getenv("DEVICE_NAME")
 # HOST = os.getenv("APPIUM_SERVER", "http://localhost:4723")
-APK_PATH = os.getenv("APK_PATH")
+APK_PATH = os.getenv("APK_PATH", "/app/MicrosoftLens/MicrosoftLens.apk")
 APP_PACKAGE = os.getenv("APP_PACKAGE")
 APP_ACTIVITY = os.getenv("APP_ACTIVITY")
 APPIUM_HOST = os.getenv("APPIUM_HOST")
