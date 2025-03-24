@@ -1,0 +1,55 @@
+# version: "3.8"
+
+# services:
+#   emulator:
+#     build:
+#       context: ./emulator
+#     ports:
+#       - "4723:4723"
+#       - "6080:6080"  # for VNC access
+#     privileged: true
+#     environment:
+#       - DEVICE=Nexus_5
+#       - APPIUM=true
+#     volumes:
+#       - /dev/bus/usb:/dev/bus/usb
+
+#   test-runner:
+#     build:
+#       context: .
+#     depends_on:
+#       - emulator
+#     environment:
+#       - APPIUM_HOST=http://emulator:4723
+#     volumes:
+#       - .:/app
+#     working_dir: /app
+#     command: >
+#       bash -c "
+#         sleep 60 &&
+#         python -m pytest MicrosoftLens/tests/test_upload_receipt.py"
+
+services:
+  emulator:
+    platform: linux/amd64
+    build:
+      context: ./emulator
+    ports:
+      - "4723:4723"
+      - "6080:6080"
+    privileged: true
+    environment:
+      - DEVICE=test_avd
+    volumes:
+      - /dev/kvm:/dev/kvm
+
+  test-runner:
+    platform: linux/amd64
+    build:
+      context: .
+    depends_on:
+      - emulator
+    environment:
+      - APPIUM_HOST=http://emulator:4723/wd/hub
+    volumes:
+      - .:/app
