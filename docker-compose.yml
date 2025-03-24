@@ -51,5 +51,6 @@ services:
       - emulator
     environment:
       - APPIUM_HOST=http://emulator:4723/wd/hub
+      - APK_PATH=/app/MicrosoftLens/MicrosoftLens.apk
     volumes:
       - .:/app
